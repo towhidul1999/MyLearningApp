@@ -1,52 +1,6 @@
-// /**
-//  * Sample React Native App
-//  * https://github.com/facebook/react-native
-//  *
-//  * @format
-//  */
-
-// import { NewAppScreen } from '@react-native/new-app-screen';
-// import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
-// import {
-//   SafeAreaProvider,
-//   useSafeAreaInsets,
-// } from 'react-native-safe-area-context';
-
-// function App() {
-//   const isDarkMode = useColorScheme() === 'dark';
-
-//   return (
-//     <SafeAreaProvider>
-//       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-//       <AppContent />
-//     </SafeAreaProvider>
-//   );
-// }
-
-// function AppContent() {
-//   const safeAreaInsets = useSafeAreaInsets();
-
-//   return (
-//     <View style={styles.container}>
-//       <NewAppScreen
-//         templateFileName="App.tsx"
-//         safeAreaInsets={safeAreaInsets}
-//       />
-//     </View>
-//   );
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//   },
-// });
-
-// export default App;
-
 import { Image, StyleSheet, Text, View, ScrollView } from 'react-native'
 import React from 'react'
-import { SafeAreaView } from 'react-native-safe-area-context'
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context'
 import * as Progress from 'react-native-progress'
 
 const App = () => {
@@ -56,123 +10,125 @@ const App = () => {
   const waterProgress = 0.4 // 40%
 
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <ScrollView showsVerticalScrollIndicator={false}>
+    <SafeAreaProvider>
+      <SafeAreaView style={styles.safeArea}>
+        <ScrollView showsVerticalScrollIndicator={false}>
 
-        {/* Header Section */}
-        <View style={styles.header}>
-          <View>
-            <Text style={styles.greeting}>Hello, User! 👋</Text>
-            <Text style={styles.subGreeting}>Ready for your workout today?</Text>
-          </View>
-          <Image
-            source={{
-              uri: 'https://reactnative.dev/img/tiny_logo.png',
-            }}
-            style={styles.avatar}
-          />
-        </View>
-
-        {/* Stats Cards Row */}
-        <View style={styles.statsContainer}>
-
-          {/* Steps Card */}
-          <View style={styles.statCard}>
-            <View style={styles.centerContent}>
-              <Progress.Circle
-                size={140}
-                thickness={12}
-                progress={stepProgress}
-                showsText={true}
-                color={'#4CAF50'}
-                borderWidth={0}
-                textStyle={styles.progressText}
-                formatText={(progress) => `${Math.round(progress * 100)}%`}
-              />
+          {/* Header Section */}
+          <View style={styles.header}>
+            <View>
+              <Text style={styles.greeting}>Hello, User! 👋</Text>
+              <Text style={styles.subGreeting}>Ready for your workout today?</Text>
             </View>
-            <View style={styles.statInfo}>
-              <Text style={styles.statValue}>5,432</Text>
-              <Text style={styles.statLabel}>Steps Today</Text>
-              <Text style={styles.statTarget}>Goal: 10,000</Text>
-            </View>
-          </View>
-
-          {/* Calories Card */}
-          <View style={styles.statCard}>
-            <View style={styles.centerContent}>
-              <Progress.Circle
-                size={140}
-                thickness={12}
-                progress={calorieProgress}
-                showsText={true}
-                color={'#FF6B6B'}
-                borderWidth={0}
-                textStyle={styles.progressText}
-                formatText={(progress) => `${Math.round(progress * 100)}%`}
-              />
-            </View>
-            <View style={styles.statInfo}>
-              <Text style={styles.statValue}>1,875</Text>
-              <Text style={styles.statLabel}>Calories Burned</Text>
-              <Text style={styles.statTarget}>Goal: 2,500</Text>
-            </View>
-          </View>
-
-        </View>
-
-        {/* Water Intake Row */}
-        <View style={styles.waterSection}>
-          <Text style={styles.sectionTitle}>Water Intake 💧</Text>
-          <View style={styles.waterCard}>
-            <Progress.Circle
-              size={100}
-              thickness={10}
-              progress={waterProgress}
-              showsText={true}
-              color={'#2196F3'}
-              borderWidth={0}
-              textStyle={styles.waterProgressText}
-              formatText={(progress) => `${Math.round(progress * 100)}%`}
+            <Image
+              source={{
+                uri: 'https://reactnative.dev/img/tiny_logo.png',
+              }}
+              style={styles.avatar}
             />
-            <View style={styles.waterInfo}>
-              <Text style={styles.waterValue}>1.6L / 4L</Text>
-              <Text style={styles.waterMessage}>Drink more water to stay hydrated!</Text>
+          </View>
+
+          {/* Stats Cards Row */}
+          <View style={styles.statsContainer}>
+
+            {/* Steps Card */}
+            <View style={styles.statCard}>
+              <View style={styles.centerContent}>
+                <Progress.Circle
+                  size={140}
+                  thickness={12}
+                  progress={stepProgress}
+                  showsText={true}
+                  color={'#4CAF50'}
+                  borderWidth={0}
+                  textStyle={styles.progressText}
+                  formatText={(progress) => `${Math.round(progress * 100)}%`}
+                />
+              </View>
+              <View style={styles.statInfo}>
+                <Text style={styles.statValue}>5,432</Text>
+                <Text style={styles.statLabel}>Steps Today</Text>
+                <Text style={styles.statTarget}>Goal: 10,000</Text>
+              </View>
+            </View>
+
+            {/* Calories Card */}
+            <View style={styles.statCard}>
+              <View style={styles.centerContent}>
+                <Progress.Circle
+                  size={140}
+                  thickness={12}
+                  progress={calorieProgress}
+                  showsText={true}
+                  color={'#FF6B6B'}
+                  borderWidth={0}
+                  textStyle={styles.progressText}
+                  formatText={(progress) => `${Math.round(progress * 100)}%`}
+                />
+              </View>
+              <View style={styles.statInfo}>
+                <Text style={styles.statValue}>1,875</Text>
+                <Text style={styles.statLabel}>Calories Burned</Text>
+                <Text style={styles.statTarget}>Goal: 2,500</Text>
+              </View>
+            </View>
+
+          </View>
+
+          {/* Water Intake Row */}
+          <View style={styles.waterSection}>
+            <Text style={styles.sectionTitle}>Water Intake 💧</Text>
+            <View style={styles.waterCard}>
+              <Progress.Circle
+                size={100}
+                thickness={10}
+                progress={waterProgress}
+                showsText={true}
+                color={'#2196F3'}
+                borderWidth={0}
+                textStyle={styles.waterProgressText}
+                formatText={(progress) => `${Math.round(progress * 100)}%`}
+              />
+              <View style={styles.waterInfo}>
+                <Text style={styles.waterValue}>1.6L / 4L</Text>
+                <Text style={styles.waterMessage}>Drink more water to stay hydrated!</Text>
+              </View>
             </View>
           </View>
-        </View>
 
-        {/* Activity Summary */}
-        <View style={styles.summarySection}>
-          <Text style={styles.sectionTitle}>Today's Activity 📊</Text>
+          {/* Activity Summary */}
+          <View style={styles.summarySection}>
+            <Text style={styles.sectionTitle}>Today's Activity 📊</Text>
 
-          <View style={styles.summaryCard}>
-            <View style={styles.summaryItem}>
-              <Text style={styles.summaryLabel}>Distance</Text>
-              <Text style={styles.summaryValue}>4.2 km</Text>
-            </View>
-            <View style={styles.divider} />
-            <View style={styles.summaryItem}>
-              <Text style={styles.summaryLabel}>Active Time</Text>
-              <Text style={styles.summaryValue}>45 mins</Text>
-            </View>
-            <View style={styles.divider} />
-            <View style={styles.summaryItem}>
-              <Text style={styles.summaryLabel}>Floors</Text>
-              <Text style={styles.summaryValue}>8</Text>
+            <View style={styles.summaryCard}>
+              <View style={styles.summaryItem}>
+                <Text style={styles.summaryLabel}>Distance</Text>
+                <Text style={styles.summaryValue}>4.2 km</Text>
+              </View>
+              <View style={styles.divider} />
+              <View style={styles.summaryItem}>
+                <Text style={styles.summaryLabel}>Active Time</Text>
+                <Text style={styles.summaryValue}>45 mins</Text>
+              </View>
+              <View style={styles.divider} />
+              <View style={styles.summaryItem}>
+                <Text style={styles.summaryLabel}>Floors</Text>
+                <Text style={styles.summaryValue}>8</Text>
+              </View>
             </View>
           </View>
-        </View>
 
-        {/* Motivational Quote */}
-        <View style={styles.quoteSection}>
-          <Text style={styles.quoteText}>
-            "The only bad workout is the one that didn't happen."
-          </Text>
-          <Text style={styles.quoteAuthor}>- Anonymous</Text>
-        </View>
+          {/* Motivational Quote */}
+          <View style={styles.quoteSection}>
+            <Text style={styles.quoteText}>
+              "The only bad workout is the one that didn't happen."
+            </Text>
+            <Text style={styles.quoteAuthor}>- Anonymous</Text>
+          </View>
 
-      </ScrollView>
-    </SafeAreaView>
+        </ScrollView>
+      </SafeAreaView>
+    </SafeAreaProvider>
   )
 }
 
@@ -218,8 +174,9 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   statCard: {
+
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#77ff00',  // #352929
     borderRadius: 20,
     padding: 16,
     alignItems: 'center',
@@ -269,7 +226,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   waterCard: {
-    backgroundColor: '#fff',
+    backgroundColor: '#77ff00',
     borderRadius: 20,
     padding: 20,
     flexDirection: 'row',
@@ -306,7 +263,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   summaryCard: {
-    backgroundColor: '#fff',
+    backgroundColor: '#77ff00',
     borderRadius: 20,
     padding: 20,
     flexDirection: 'row',
@@ -342,7 +299,7 @@ const styles = StyleSheet.create({
     marginBottom: 32,
     paddingHorizontal: 20,
     paddingVertical: 20,
-    backgroundColor: '#e8f4f8',
+    backgroundColor: '#e8f8f1',
     borderRadius: 20,
     marginHorizontal: 16,
   },
